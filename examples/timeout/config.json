@@ -1,0 +1,10 @@
+{
+  "parameters": [
+    { "min": -10, "max": 10 },
+    { "min": -10, "max": 10 }
+  ],
+  "objectives": 2,
+  "workers": [
+    { "command": "timeout 2s ./time_consuming_sphere_2D.sh $parameters" }
+  ]
+}

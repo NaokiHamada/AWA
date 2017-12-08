@@ -1,0 +1,13 @@
+{
+  "parameters": [
+    { "min": -10, "max": 10 },
+    { "min": -10, "max": 10 }
+  ],
+  "objectives": 2,
+  "workers": [
+    { "command": "ssh 192.168.0.1  \"./sphere_2D.sh $parameters\"" },
+    { "command": "ssh 192.168.0.1  \"./sphere_2D.sh $parameters\"" },
+    { "command": "ssh 192.168.0.2  \"./sphere_2D.sh $parameters\"" },
+    { "command": "ssh 192.168.0.2  \"./sphere_2D.sh $parameters\"" }
+  ]
+}

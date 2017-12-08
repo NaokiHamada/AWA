@@ -1,0 +1,18 @@
+{
+  "parameters": [
+    { "min": -10, "max": 10 },
+    { "min": -10, "max": 10 }
+  ],
+  "workers": [
+    { "command": "ssh 192.168.0.1  \"qsub_wrapper.sh $parameters\"" },
+    { "command": "ssh 192.168.0.1  \"qsub_wrapper.sh $parameters\"" },
+    { "command": "ssh 192.168.0.1  \"qsub_wrapper.sh $parameters\"" },
+    { "command": "ssh 192.168.0.1  \"qsub_wrapper.sh $parameters\"" },
+    { "command": "ssh 192.168.0.1  \"qsub_wrapper.sh $parameters\"" },
+    { "command": "ssh 192.168.0.1  \"qsub_wrapper.sh $parameters\"" },
+    { "command": "ssh 192.168.0.1  \"qsub_wrapper.sh $parameters\"" },
+    { "command": "ssh 192.168.0.1  \"qsub_wrapper.sh $parameters\"" },
+    { "command": "ssh 192.168.0.1  \"qsub_wrapper.sh $parameters\"" },
+    { "command": "ssh 192.168.0.1  \"qsub_wrapper.sh $parameters\"" }
+  ]
+}

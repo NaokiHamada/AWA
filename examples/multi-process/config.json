@@ -1,0 +1,13 @@
+{
+  "parameters": [
+    { "min": -10, "max": 10 },
+    { "min": -10, "max": 10 }
+  ],
+  "objectives": 2,
+  "workers": [
+    { "command": "./sphere_2D.sh $parameters" },
+    { "command": "./sphere_2D.sh $parameters" },
+    { "command": "./sphere_2D.sh $parameters" },
+    { "command": "./sphere_2D.sh $parameters" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "parameters": [
+    { "min": -10, "max": 10 },
+    { "min": -10, "max": 10 }
+  ],
+  "objectives": 2,
+  "cache": "solutions.csv",
+  "optimizer": {
+    "seed": 42,
+    "max_iters": 3
+  },
+  "workers": [
+    { "command": "./sphere_2D.sh $parameters" }
+  ]
+}
