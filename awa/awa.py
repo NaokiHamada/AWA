@@ -1011,7 +1011,7 @@ class AWA(object):
             f = self.s(self.f, self.states[a].w)
             x0 = self.states[a].x[:]
             self.states[a].x = await self.o(
-                f, x0, sigma0=sigma0, maxfevals=ev, copy_ratio=self.states[a].w[1])
+                f, x0, sigma0=sigma0, maxfevals=ev)
             if self.d(self.states[a].x, x0) <= self.e:
                 self.states[a].y = await self.f(self.states[a].x)
                 break
