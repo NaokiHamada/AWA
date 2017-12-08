@@ -1087,7 +1087,7 @@ async def fmin(problem, confopt, logger=None):
     w0 = np.asarray(
         confopt.get(
             'w0',
-            np.eye(problem.obj))))
+            np.eye(problem.obj)))
     scalarization = globals()[confopt.get('scalarization', 'weighted_sum')]
     optimization = globals()[confopt.get('optimization', 'cmaes')]
     awa = AWA(problem, x0, w0, s=scalarization, o=optimization, max_evals=evs)
