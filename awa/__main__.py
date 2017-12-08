@@ -356,7 +356,7 @@ async def amain():
 
     # Run GA loop
     conf_opt = conf.get('optimizer', {})
-    import awa.optimizers.awa as opt
+    import awa.awa as opt
     await opt.fmin(problem, conf_opt, logger)
 
 
