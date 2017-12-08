@@ -67,12 +67,11 @@ import ast
 
 __all__ = (
     'weighted_sum',
+    'epsilon_constraint',
     'tchebycheff',
     'augmented_tchebycheff',
     'pbi',
     'ipbi',
-    'nelder_mead',
-    'l_bfgs_b',
     'cmaes',
     'dvar',
     'dobj',
