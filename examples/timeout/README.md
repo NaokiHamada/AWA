@@ -1,14 +1,16 @@
-# 長時間かかるworkerプロセスをタイムアウトする例
-タスクによっては，目的関数の評価時間がばらつくことがあります．
-例えば，ニューラルネットワークの最適な層数を見つけるタスクでは，中間層が10層のネットワークは1層のネットワークの何倍も学習時間がかかるでしょう．
+# Use Timeout to Terminate Evaluations
+This example shows a configuration to terminate time-consuming evaluations.
 
-このようなタスクでは，長時間かかる評価が最適化の進行を妨げてしまうため，一定時間で評価を打ち切る__タイムアウト__を設けることが望ましいです．
-タイムアウトは，設定ファイルの `workers` の `command` にタイムアウト処理を記述することで実現します．
-タイムアウトした解の評価値は `inf` になります．
+In some problems, the evaluation time of objective functions can significantly vary.
+For instance, hyperparameter tuning for deep neural networks involves network training of different model size.
 
-本サンプルは、Linuxの `timeout` コマンドを使ってタイムアウトを実現する例です．
-目的関数 [time_consuming_sphere_2D.sh](time_consuming_sphere_2D.sh) の実行には0～4秒かかります．
-設定ファイル [config.json](config.json) に以下のように記述することで、2秒以上かかる評価を打ち切っています．
+For such a task, one can use _timeout_ to terminate bottlenecking evaluations in order to accelerate search.
+AWA does not provide a special support to do timeout, but it can be done by simply adding an operating system's timeout command to `command` of `workers` in a configuration file.
+The evaluation value of timeouted solutions are set to `inf`.
+
+The following sample code implements a timeout by using Linux's `timeout` command.
+The execution of the objective function [time_consuming_sphere_2D.sh](time_consuming_sphere_2D.sh) takes 0-4 seconds.
+Evaluations taking 2 or more seconds will be terminated by the `timeout` command.
 ```json
 {
   "workers": [
@@ -17,7 +19,7 @@
 }
 ```
 
-## 実行方法
+## Run a Demo
 ```
 ./run.sh
 ```

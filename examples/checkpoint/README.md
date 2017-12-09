@@ -1,9 +1,11 @@
-# 中断と再開
-AWAの実行中，途中経過は常にファイルに記録されています．
-そのため，AWAの実行を途中で終了しても，次回実行時に中断時の状態から再開することができます．
+# Suspend and Resume
+This example shows a configuration to suspend and resume AWA.
 
-本サンプルは，中断と再開を行うための設定ファイルの例です．
-まず，白紙の状態からAWAを2反復目まで実行してみます．設定ファイルは以下のようになります．
+AWA records evaluated solutions into a cache file.
+This file provides a checkpointing that enables us to shutdown AWA anytime and restart from the state previously shutted down.
+
+Let us run two iterations of AWA from scratch.
+Its configuration file is as follows:
 ```json
 {
   "cache": "solutions.csv",
@@ -13,10 +15,11 @@ AWAの実行中，途中経過は常にファイルに記録されています�
   }
 }
 ```
-チェックポイント用ファイルは`cache`に指定します．
-指定したファイルに，最適化中に評価した解が書き出されます．
+The cache file path is specified in `cache`.
+Also notice that we use a fixed random seed for reproducibility.
 
-次に，このファイルから継続して3反復目まで実行してみます．再開するときの設定は，以下のようになります．
+Then, let us resume the run.
+The configuration file becomes as follows:
 ```json
 {
   "cache": "solutions.csv",
@@ -26,16 +29,12 @@ AWAの実行中，途中経過は常にファイルに記録されています�
   }
 }
 ```
-`max_iters`のみが変化したことに注意してください．
-新しく評価された解は`solutions.csv`に追記されます．
-1回目の実行で評価済みの解は再評価されず，その後の（未評価の）解のみが評価されることに注意してください．
+Notice that we increase `max_iters` for continuation and keep the rest settings unchanged for recovering the previous state.
 
-## 利用上の注意点
-適切に再開するためには，AWAおよび目的関数が2回目の実行時に1回目の実行時と同じ振る舞いをする必要があります．
+During the second run, the already-evaluated solutions in the first run are read from the cache file and new solutions are evaluated and appended to `solutions.csv`.
 
-`solutions.csv`には，解の評価情報しか記録されていないため，再現性を担保するためには，以下も必要です．
-- `parameters`の定義を変えない
-- 乱数の種`seed`を固定する
-- 目的関数が純粋関数的に振る舞うこと（同じ入力に対して同じ出力を返すこと）
+## Run a Demo
+```
+./run.sh
+```
 
-ユーザは，これらを満たすように設定ファイルと目的関数プログラムを記述する必要があります．

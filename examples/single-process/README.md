@@ -1,8 +1,7 @@
-# 1ノードにおいて並列化を行わずに実行する例
-最小限の設定ファイルです。
-並列化を使わずに、ローカルのユーザプログラムを実行する例です。
+# Run AWA with a Single Worker Task
+This example shows the minimum configuration to use AWA, which runs a single worker task that dispatches objective function evaluations to a program on a local host.
 
-## 実行方法
+## Run a Demo
 ```
 ./run.sh
 ```

@@ -1,14 +1,21 @@
-# 最適化手法の設定
-設定ファイルを通して，最適化手法のパラメータを調節する例です．
+# Configure AWA's parameters
+This example shows a configuration to setup AWA's parameters for tuning search performance.
 
-最適化手法のパラメータは`optimizer`という項目に記述します．
+AWA's parameters can be configured in the `optimizer` section:
 ```json
 {
   "optimizer": {
     "seed": 42,
     "max_iters": 3,
-    "max_evals": 64,
+    "max_evals": {
+      "(1,0)": 64,
+      "(0,1)": 64,
+      "(1,1)": 32,
+      "(3,1)": 16,
+      "(1,3)": 16
+    },
     "scalarization": "weighted_sum",
+    "optimization": "cmaes",
     "x0": [
       [0.7, 0.7],
       [0.3, 0.3]
@@ -20,11 +27,18 @@
   }
 }
 ```
-- `seed`: 乱数の種です．
-- `max_iters`: AWAの反復数です．
-- `max_evals`: AWAの中で走るCMA-ES 1回あたりの最大評価回数です．
-- `scalarization`: スカラー化手法です．
-- `x0`: 初期解です．
-- `w0`: 初期重みです．
+- `seed`: A seed of the random number generator.
+- `max_iters`: The number of iterations to stop AWA.
+- `max_evals`: The number of evaluations to stop CMA-ES running in AWA.
+- `scalarization`: The scalarization method.
+- `optimization`: The optimization method.
+- `x0`: Initial solutions.
+- `w0`: Initial weights.
 
-より詳しくは[設定ファイルの仕様書](../../FORMATS.md#optimizer)をご覧ください．
+See [specifications](../../FORMATS.md#optimizer) for more details.
+
+## Run a Demo
+```
+./run.sh
+```
+

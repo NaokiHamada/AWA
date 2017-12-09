@@ -1,6 +1,7 @@
-# 1ノードの複数プロセスで並列化する
-ユーザプログラムの実行を1ノードの複数プロセスで並列化する設定ファイルの例です．
-以下のように，並列化したい数だけ`wokers`の要素を並べるだけでOKです．
+# Run AWA with Multiple Worker Tasks
+This example shows a configuration to parallelize objective function evaluations by running multiple worker tasks that invoke evaluation processes on a local host.
+
+To parallelize evaluations, add multiple elements of `wokers` in `config.json` as follows:
 ```json
 {
   "workers": [
@@ -11,3 +12,10 @@
   ]
 }
 ```
+which runs four workers asynchronously.
+
+# Run a Demo
+```
+./run.sh
+```
+

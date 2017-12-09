@@ -1,6 +1,7 @@
-# 複数ノードでの実行
-複数のノードからなる計算機クラスタで分散並列化するケースの設定ファイルの例です．
-以下の例では，各ワーカーは各ノードに SSH ログインしてコマンドを実行します．
+# Run AWA with Multiple Workers on Multiple Nodes
+This example shows a configuration to distribute the evaluation of objective functions on multiple nodes.
+
+The following configuration runs multiple workers that forward evaluations to different nodes via SSH.
 ```json
 {
   "workers": [
@@ -11,21 +12,21 @@
   ]
 }
 ```
-リモートでコマンドを実行するために，ユーザはいかなる手段を用いることもできます．
-上記の SSH は一例にすぎず， REST API や Remote Procedure Call (RPC) などでも構いません．
+To execute commands on remote hosts, users can choose any method.
+As well as SSH described above, REST API and RPC are good options to do that.
 
-いずれの場合にも， AWA の実行に先立って，ユーザはリモートでコマンドを実行できるように環境を設定する必要があります．
-上記の例でいえば，以下のような事前作業が必要です．
-- SSH ログインにおいて対話的認証を省くために，`192.168.0.1`と`192.168.0.2`に公開鍵を配布する．あるいはローカルで`ssh-agent`を起動する．
-- `192.168.0.1`と`192.168.0.2`のホームディレクトリに`sphere_2D.sh`をコピーする
-- それぞれの`sphere_2D.sh`に実行可能権限を付与する
+In any case, users have to setup environments so that workers can execute commands.
+The above example needs the following preparation:
+- To skip the dialog authentication of SSH log-in, deploy an SSH public key to `192.168.0.1` and `192.168.0.2`, or run `ssh-agent` on a local host.
+- Copy `sphere_2D.sh` to the home directory of `192.168.0.1` and `192.168.0.2`.
+- Change the permission of `sphere_2D.sh` to be executable in each remote host.
 
-## 実行例
-本サンプルスクリプトでは，リモートに SSH 公開鍵と目的関数スクリプトを配布し， AWA を実行します．
-本スクリプトはデフォルトのままでは実行できません．
-`config.json`と`run.sh`における`192.168.0.1`と`192.168.0.2`の部分を，ユーザの環境に合わせて書き換えてください．
+## Run a Demo
+This sample script deploys an SSH public key and an objective function program to remote hosts, and then runs AWA.
+The script cannot be executed unless you modify remote host settings.
+Change `192.168.0.1` and `192.168.0.2` in `config.json` and `run.sh` to your own remote hosts.
 
-変更後，以下のようにして実行します．
+After editing, run the script as follows:
 ```
 ./run.sh
 ```
