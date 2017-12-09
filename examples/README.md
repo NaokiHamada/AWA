@@ -1,6 +1,6 @@
 # Examples
 1. [`single-process/`](./single-process)    Run AWA with a single worker on a single node
-2. [`multi-process/`](./multi-process)      Run AWA on multiple workers on a single node
+2. [`multi-process/`](./multi-process)      Run AWA with multiple workers on a single node
 3. [`reproducibility/`](./reproducibility)  Reproduce results
 4. [`multi-node/`](./multi-node)            Run AWA with multiple workers on multiple nodes
 5. [`job_scheduler/`](./job_scheduler)      Run AWA with multiple workers on a job scheduler
