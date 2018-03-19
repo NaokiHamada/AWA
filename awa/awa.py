@@ -1094,7 +1094,7 @@ async def fmin(problem, confopt, logger=None):
     async def search_all():
         tasks = []
         for a in AddressSpace(problem.obj, itr):
-            tasks.append(await curio.spawn(awa.search_once(a)))
+            tasks.append(await awa.search_once(a))
         for t in tasks:
             await t.join()
 
